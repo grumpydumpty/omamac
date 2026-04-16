@@ -54,16 +54,19 @@ install() {
 
   # Install secondary apps
   section "Installing apps..."
-  casks=(rectangle-pro hammerspoon font-jetbrains-mono-nerd-font docker-desktop google-chrome claude-code raycast)
+  casks=(rectangle-pro font-jetbrains-mono-nerd-font docker-desktop google-chrome)
   for cask in $casks; do brew install --cask "$cask" || true; done
 
   # Install optional apps
   section "Installing optional apps..."
   selected_apps=$(gum choose --no-limit --height=11 \
-    --selected="1password" --selected="dropbox" --selected="spotify" \
-    --selected="signal" --selected="whatsapp" --selected="obsidian" \
-    --selected="zoom" --selected="localsend" --selected="tailscale" \
-    "1password" "dropbox" "spotify" "signal" "whatsapp" "obsidian" "zoom" "localsend" "lm-studio" "tailscale")
+    --selected="bitwarden-cli" \
+    --selected="dropbox" \
+    --selected="spotify" \
+    --selected="signal" \
+    --selected="whatsapp" \
+    --selected="zoom" \
+    "bitwarden-cli" "dropbox" "spotify" "signal" "whatsapp" "obsidian" "zoom" "localsend" "lm-studio" "tailscale")
   while IFS= read -r app; do
     [[ -n "$app" ]] && brew install --cask "$app" || true
   done <<< "$selected_apps"
@@ -71,8 +74,7 @@ install() {
   # Install dev environments
   section "Installing dev environments..."
   selected_langs=$(gum choose --no-limit --height=15 \
-    --selected="node" --selected="ruby" \
-    "node" "ruby" "python" "go" "rust" "java" "php" "elixir" "erlang" "scala" "kotlin" "deno" "bun")
+    "dotnet-sdk" "node" "ruby" "python" "go" "rust" "java" "php" "elixir" "erlang" "scala" "kotlin" "deno" "bun")
   while IFS= read -r lang; do
     [[ -n "$lang" ]] && mise use -g "$lang" || true
   done <<< "$selected_langs"
@@ -86,14 +88,14 @@ install() {
   done
 
   # Create hush file to suppress "Last login" message
-  touch "$HOME/.hushlogin"
-  echo "✓ Hush login"
+#   touch "$HOME/.hushlogin"
+#   echo "✓ Hush login"
 
   . "$INSTALLER_DIR/install/mac.sh"
   echo "✓ Settings"
 
   # Correct hammerspoon config location
-  defaults write org.hammerspoon.Hammerspoon MJConfigFile "$HOME/.config/hammerspoon/init.lua"
+#   defaults write org.hammerspoon.Hammerspoon MJConfigFile "$HOME/.config/hammerspoon/init.lua"
 
   # Done!
   section "Finished!"
@@ -105,10 +107,10 @@ install() {
   echo "6. Remember to authenticate with: gh auth login"
   echo "7. Then logout and back in for everything to take effect (Cmd + Shift + Q)"
 
-  open -a "Hammerspoon"
+#   open -a "Hammerspoon"
   open -a "Rectangle Pro"
-  open -a "Raycast"
-  open -a "Tailscale"
+#   open -a "Raycast"
+#   open -a "Tailscale"
 }
 
 # Must use a function to prevent brew installs from stealing stdin
