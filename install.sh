@@ -29,7 +29,7 @@ install() {
     brew install git
   fi
 
-  # Clone
+  # Clone omamac repo
   REPO="https://github.com/omacom-io/omamac.git"
   INSTALLER_DIR="$(mktemp -d)"
   trap 'rm -rf "$INSTALLER_DIR"' EXIT
@@ -54,18 +54,12 @@ install() {
 
   # Install secondary apps
   section "Installing apps..."
-  casks=(rectangle-pro font-jetbrains-mono-nerd-font docker-desktop google-chrome)
+  casks=(rectangle font-caskaydia-mono-nerd-font font-jetbrains-mono-nerd-font docker-desktop google-chrome)
   for cask in $casks; do brew install --cask "$cask" || true; done
 
   # Install optional apps
   section "Installing optional apps..."
   selected_apps=$(gum choose --no-limit --height=11 \
-    --selected="bitwarden-cli" \
-    --selected="dropbox" \
-    --selected="spotify" \
-    --selected="signal" \
-    --selected="whatsapp" \
-    --selected="zoom" \
     "bitwarden-cli" "dropbox" "spotify" "signal" "whatsapp" "obsidian" "zoom" "localsend" "lm-studio" "tailscale")
   while IFS= read -r app; do
     [[ -n "$app" ]] && brew install --cask "$app" || true
@@ -78,6 +72,53 @@ install() {
   while IFS= read -r lang; do
     [[ -n "$lang" ]] && mise use -g "$lang" || true
   done <<< "$selected_langs"
+
+  # install vscode extensions
+  section "Installing VS Code externsions..."
+  selected_extensions=$(gum choose --no-limit --height=15 \
+        "arcticicestudio.nord-visual-studio-code" \
+        "darkriszty.markdown-table-prettify" \
+        "github.codespaces" \
+        "mermaidchart.vscode-mermaid-chart" \
+        "ms-azuretools.vscode-containers" \
+        "ms-kubernetes-tools.vscode-kubernetes-tools" \
+        "ms-vscode-remote.remote-containers" \
+        "ms-vscode.cmake-tools" \
+        "ms-vscode.cpp-devtools" \
+        "ms-vscode.cpptools" \
+        "ms-vscode.cpptools-extension-pack" \
+        "ms-vscode.cpptools-themes" \
+        "ms-vscode.powershell" \
+        "redhat.vscode-yaml" \
+        "vstirbu.vscode-mermaid-preview" \
+    )
+  while IFS= read -r extension; do
+    [[ -n "$extension" ]] && code --install-extension "$extension" || true
+  done <<< "$selected_extensions"
+
+ # install jetbrains plugin1s
+  section "Installing JetBrains plugins..."
+  selected_plugins=$(gum choose --no-limit --height=15 \
+        "com.arcticicestudio.nord.jetbrains" \
+    )
+  while IFS= read -r extension; do
+    # IntelliJ
+    # [[ -n "$plugin" ]] && idea64.exe installPlugins "$plugin" || true
+    [[ -n "$plugin" ]] && idea installPlugins "$plugin" || true
+    # [[ -n "$plugin" ]] && idea.sh installPlugins "$plugin" || true
+    # Rider
+    # [[ -n "$plugin" ]] && rider64.exe installPlugins $plugin || true
+    [[ -n "$plugin" ]] && rider installPlugins $plugin || true
+    # [[ -n "$plugin" ]] && rider.sh installPlugins $plugin || true
+    # PyCharm
+    # [[ -n "$plugin" ]] && pycharm64.exe installPlugins $plugin || true
+    [[ -n "$plugin" ]] && pycharm installPlugins $plugin || true
+    # [[ -n "$plugin" ]] && pycharm.sh installPlugins $plugin || true
+    # DataGrip
+    # [[ -n "$plugin" ]] && datagrip64.exe installPlugins $plugin || true
+    [[ -n "$plugin" ]] && datagrip installPlugins $plugin || true
+    # [[ -n "$plugin" ]] && datagrip.sh installPlugins $plugin || true
+  done <<< "$selected_plugins"
 
   # Omamac configs
   section "Configuring Mac..."
@@ -108,7 +149,7 @@ install() {
   echo "7. Then logout and back in for everything to take effect (Cmd + Shift + Q)"
 
 #   open -a "Hammerspoon"
-  open -a "Rectangle Pro"
+#   open -a "Rectangle Pro"
 #   open -a "Raycast"
 #   open -a "Tailscale"
 }

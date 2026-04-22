@@ -2,15 +2,15 @@
 osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
 
 # Configure the dock
-# defaults write com.apple.dock orientation -string "right"
+defaults write com.apple.dock orientation -string "bottom"
 defaults write com.apple.dock autohide -bool true
-# defaults write com.apple.dock tilesize -int 43
+defaults write com.apple.dock tilesize -int 42
 
 # Normal (non-natural) scroll direction
-# defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Disable click desktop to reveal it
-# defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
 # 24-hour clock
 defaults write NSGlobalDomain AppleICUForce24HourTime -bool true
