@@ -69,9 +69,23 @@ Grab nord colours and themes
 - [nordtheme/alacritty: An arctic, north-bluish clean and elegant Alacritty color scheme.](https://github.com/nordtheme/alacritty)
 - [nordtheme/visual-studio-code: An arctic, north-bluish clean and elegant Visual Studio Code theme.](https://github.com/nordtheme/visual-studio-code)
 
+- [grumpydumpty/omamac](https://github.com/grumpydumpty/omamac)
+- [grumpydumpty/omadots](https://github.com/grumpydumpty/omadots)
+- [grumpydumpty/omarchy](https://github.com/grumpydumpty/omarchy/blob/master/config/alacritty/alacritty.toml)
+- [Omarchy Themes - A comprehensive collection of themes for Omarchy](https://omarchythemes.com/)
+
+- [Midnight Commander - Skin Editor](https://skins.midnight-commander.org/)
+- [MidnightCommander/skins: Midnight Commander Skin Editor](https://github.com/MidnightCommander/skins/tree/master)
+
+- [iTerm2-Color-Schemes/dynamic-colors/Nord.sh at master · mbadolato/iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/dynamic-colors/Nord.sh)
+
+- [Hyper Store - hyper-material-theme](https://hyper.is/store/hyper-material-theme)
+- [Hyper Store - verminal](https://hyper.is/store/verminal)
+
 ***
 
 Install iA Writer fonts
 brew install font-ia-writer-mono font-ia-writer-duo font-ia-writer-quattro
 
 ***
+_Last updated on: 2026/05/17_
